@@ -21,7 +21,7 @@
   PlatformProcess();
 </script>
 
-<div class="main-window-{GetPlatform()}">
+<div class="main-window-{platform}">
   <Titlebar macButtons={platform === "darwin"}/>
   {#if $isLoading}
     <div>Loading...</div>

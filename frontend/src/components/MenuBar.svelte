@@ -1,5 +1,6 @@
 <script>
     import { Quit, WindowMinimise, WindowToggleMaximise } from "../../wailsjs/runtime/runtime";
+    import {OpenMenuOptions} from "./common/menubar/MenuBarOptions.js";
 
     export let mac;
 
@@ -22,7 +23,7 @@
             <button tabindex="-1" on:click={maximize} id="maximize">
                 View
             </button>
-            <button tabindex="-1" on:click={Quit} id="close">
+            <button tabindex="-1" use:OpenMenuOptions={{elements:[]}} id="close">
                 Help
             </button>
         {/if}
@@ -34,7 +35,6 @@
         background-color: rgb(59, 59, 59);
         color: white;
         height: 28px;
-        display: flex;
         align-items: center;
         user-select: none;
     }
@@ -43,13 +43,6 @@
         width: auto;
         height: auto;
         display: flex;
-    }
-
-    .wordmark {
-        width: auto;
-        height: auto;
-        alignment: left;
-        margin: 0 8px;
     }
 
     .window-controls button {
@@ -68,12 +61,6 @@
         width: 40px;
         transition: 50ms ease;
         background-color: transparent;
-    }
-
-    .type-standard button svg {
-        width: 12px;
-        height: 12px;
-        fill: currentColor;
     }
 
     .type-standard button:hover {
