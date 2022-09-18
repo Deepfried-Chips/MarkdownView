@@ -22,19 +22,17 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:             "Markdown View",
+		Title:             "Markdown Viewer",
 		Width:             1024,
 		Height:            768,
 		MinWidth:          1024,
 		MinHeight:         768,
-		MaxWidth:          1280,
-		MaxHeight:         800,
 		DisableResize:     false,
 		Fullscreen:        false,
 		Frameless:         true,
 		StartHidden:       false,
 		HideWindowOnClose: false,
-		BackgroundColour:  &options.RGBA{R: 255, G: 255, B: 255, A: 255},
+		BackgroundColour:  &options.RGBA{R: 55, G: 55, B: 55, A: 100},
 		Assets:            assets,
 		Menu:              nil,
 		Logger:            nil,

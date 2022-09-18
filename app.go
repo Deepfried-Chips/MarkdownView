@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
-	"fmt"
+	"github.com/microcosm-cc/bluemonday"
+	"github.com/russross/blackfriday/v2"
+	"os"
 	"runtime"
 )
 
@@ -39,9 +41,35 @@ func (a *App) shutdown(ctx context.Context) {
 	// Perform your teardown here
 }
 
-// Greet returns a greeting for the given name
-func (a *App) Greet(stringToFormat string, name string) string {
-	return fmt.Sprintf(stringToFormat, name)
+func (a *App) MarkdownerFile(path string) string {
+	file, err := os.ReadFile(path)
+	if err != nil {
+		return err.Error()
+	}
+
+	out := bluemonday.UGCPolicy().SanitizeBytes(blackfriday.Run(file, blackfriday.WithExtensions(blackfriday.CommonExtensions)))
+
+	return string(out)
+}
+
+func (a *App) ReadFile(path string) string {
+	file, err := os.ReadFile(path)
+	if err != nil {
+		return err.Error()
+	}
+	return string(file)
+}
+
+func (a *App) ReadDir(path string) []string {
+	files, err := os.ReadDir(path)
+	if err != nil {
+		return []string{err.Error()}
+	}
+	var out []string
+	for _, file := range files {
+		out = append(out, file.Name())
+	}
+	return out
 }
 
 func (a *App) GetPlatform() string {

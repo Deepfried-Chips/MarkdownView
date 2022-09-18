@@ -1,8 +1,9 @@
 <script>
   import { register, init, getLocaleFromNavigator, _, isLoading } from 'svelte-i18n';
   import {GetPlatform} from "../wailsjs/go/main/App.js";
-  import Home from './pages/home.svelte'
+  import View from './pages/view.svelte'
   import Titlebar from "./components/Titlebar.svelte";
+  import MenuBar from "./components/MenuBar.svelte";
 
   let platform = "win32";
 
@@ -25,6 +26,7 @@
   {#if $isLoading}
     <div>Loading...</div>
   {:else}
-    <Home/>
+    <MenuBar mac={platform === "darwin"}/>
+    <View/>
   {/if}
 </div>

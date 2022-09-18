@@ -1,16 +1,19 @@
 <script>
-    import { Quit, WindowMinimise } from "../../wailsjs/runtime/runtime";
+    import { Quit, WindowMinimise, WindowToggleMaximise } from "../../wailsjs/runtime/runtime";
 
     export let macButtons;
 
     function minimize() {
         WindowMinimise();
     }
+    function maximize() {
+        WindowToggleMaximise();
+    }
 
 </script>
 
 <header style="--wails-draggable:drag" class="titlebar {macButtons === true ? 'type-mac' : 'type-standard'}">
-    <p class="wordmark">Markdown View</p>
+    <p class="wordmark">Markdown Viewer</p>
 
     <div style="--wails-draggable:no-drag" class="window-controls">
         {#if macButtons === true}
@@ -19,16 +22,25 @@
                     <path stroke="#4c0000" fill="none" d="M8.5,3.5 L6,6 L3.5,3.5 L6,6 L3.5,8.5 L6,6 L8.5,8.5 L6,6 L8.5,3.5 Z"></path>
                 </svg>
             </button>
+            <button tabindex="-1" on:click={maximize} id="maximize">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2 9.75C2 9.33579 2.33579 9 2.75 9H17.25C17.6642 9 18 9.33579 18 9.75C18 10.1642 17.6642 10.5 17.25 10.5H2.75C2.33579 10.5 2 10.1642 2 9.75Z"/>
+                </svg>
+            </button>
             <button tabindex="-1" on:click={minimize} id="minimize">
                 <svg width="12" height="12" viewBox="0 0 12 12">
                     <rect fill="#975500" width="6" height="1" x="3" y="5.5" fill-rule="evenodd"></rect>
                 </svg>
             </button>
-            <button id="maximize" disabled></button>
         {:else}
             <button tabindex="-1" on:click={minimize} id="minimize">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path d="M2 9.75C2 9.33579 2.33579 9 2.75 9H17.25C17.6642 9 18 9.33579 18 9.75C18 10.1642 17.6642 10.5 17.25 10.5H2.75C2.33579 10.5 2 10.1642 2 9.75Z"/>
+                </svg>
+            </button>
+            <button tabindex="-1" on:click={maximize} id="maximize">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <rect stroke="#ffffff" stroke-opacity="1" stroke-width="2" fill-opacity="0" fill-rule="nonzero" width="20" height="20"></rect>
                 </svg>
             </button>
             <button tabindex="-1" on:click={Quit} id="close">
@@ -47,14 +59,13 @@
         height: 28px;
         display: flex;
         align-items: center;
-        -webkit-app-region: drag;
+        user-select: none;
     }
 
     .window-controls {
         display: flex;
         align-items: center;
         margin-left: auto;
-        -webkit-app-region: no-drag;
     }
 
     .wordmark {
@@ -66,6 +77,7 @@
 
     .window-controls button {
         display: flex;
+        color: white;
         align-items: center;
         justify-content: center;
         padding: 0;
@@ -103,6 +115,16 @@
     }
 
     .type-standard button#minimize:active {
+        background-color: rgba(175, 175, 175, 0.76);
+        color: rgba(255, 255, 255, 0.78);
+    }
+
+    .type-standard button#maximize:hover {
+        background-color: rgba(175, 175, 175, 0.76);
+        color: #fff;
+    }
+
+    .type-standard button#maximize:active {
         background-color: rgba(175, 175, 175, 0.76);
         color: rgba(255, 255, 255, 0.78);
     }
@@ -150,7 +172,7 @@
         background-color: #ffbb2e;
     }
 
-    .type-mac .window-controls button[disabled] {
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.012);
+    .type-mac .window-controls #maximize {
+        background-color: #82ff2e;
     }
 </style>

@@ -3,4 +3,8 @@
 
 export function GetPlatform():Promise<string>;
 
-export function Greet(arg1:string,arg2:string):Promise<string>;
+export function MarkdownerFile(arg1:string):Promise<string>;
+
+export function ReadDir(arg1:string):Promise<Array<string>>;
+
+export function ReadFile(arg1:string):Promise<string>;

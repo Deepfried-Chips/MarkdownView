@@ -6,6 +6,14 @@ export function GetPlatform() {
   return window['go']['main']['App']['GetPlatform']();
 }
 
-export function Greet(arg1, arg2) {
-  return window['go']['main']['App']['Greet'](arg1, arg2);
+export function MarkdownerFile(arg1) {
+  return window['go']['main']['App']['MarkdownerFile'](arg1);
+}
+
+export function ReadDir(arg1) {
+  return window['go']['main']['App']['ReadDir'](arg1);
+}
+
+export function ReadFile(arg1) {
+  return window['go']['main']['App']['ReadFile'](arg1);
 }
