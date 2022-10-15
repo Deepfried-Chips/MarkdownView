@@ -13,25 +13,23 @@
 
 </script>
 
-<header style="--wails-draggable:drag" class="titlebar {mac === true ? 'type-mac' : 'type-standard'}">
+<header style="--wails-draggable:drag" class="menubar {mac === true ? 'type-mac' : 'type-standard'}">
 
-    <div class="window-controls">
-        {#if mac === false}
+    <div class="menu-controls">
             <button tabindex="-1" on:click={minimize} id="minimize">
                 File
             </button>
-            <button tabindex="-1" on:click={maximize} id="maximize">
+            <button tabindex="-1" use:OpenMenuOptions={{elements:[{text:"About",action:maximize}]}} id="maximize">
                 View
             </button>
-            <button tabindex="-1" use:OpenMenuOptions={{elements:[]}} id="close">
+            <button tabindex="-1" use:OpenMenuOptions={{elements:[{text:"About",action:Quit}]}} id="close">
                 Help
             </button>
-        {/if}
     </div>
 </header>
 
 <style>
-    .titlebar {
+    .menubar {
         background-color: rgb(59, 59, 59);
         color: white;
         height: 28px;
@@ -39,13 +37,13 @@
         user-select: none;
     }
 
-    .window-controls {
+    .menu-controls {
         width: auto;
         height: auto;
         display: flex;
     }
 
-    .window-controls button {
+    .menu-controls button {
         display: flex;
         color: white;
         align-items: center;

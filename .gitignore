@@ -1,2 +1,4 @@
-.idea/
+.idea
 build/bin
+frontend/node_modules
+frontend/dist

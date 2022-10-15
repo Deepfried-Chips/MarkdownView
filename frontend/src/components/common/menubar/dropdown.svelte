@@ -3,24 +3,22 @@
     export let parent = undefined;
 </script>
 
-<svelte:element class="dropdown" this=parent>
+<svelte:options accessors/>
+
+<svelte:element class="dropdown" id="dropdown" this=parent>
     <div class="dropdown-content" bind:this={parent}>
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
+        {#each elements as element}
+            <button on:click={element.action} class="dropbtn">{element.text}</button>
+        {/each}
     </div>
 </svelte:element>
 
 <style>
-    /* The dropdown container */
-    .dropdown {
-        float: left;
-        overflow: hidden;
-    }
 
     /* Dropdown button */
     .dropdown .dropbtn {
         font-size: 16px;
+        display: flex;
         border: none;
         outline: none;
         color: white;
@@ -32,16 +30,16 @@
 
     /* Add a red background color to navbar links on hover */
     .navbar a:hover, .dropdown:hover .dropbtn {
-        background-color: red;
+        background-color: #6d6d6d;
     }
 
     /* Dropdown content (hidden by default) */
     .dropdown-content {
         display: block;
         position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        background-color: rgba(55,55,55,0.90);
+        min-width: 60px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
         z-index: 1;
     }
 

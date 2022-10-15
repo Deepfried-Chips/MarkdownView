@@ -3,17 +3,21 @@ import Options from './dropdown.svelte';
 export function OpenMenuOptions(node, {
     elements = [],
 }) {
-    console.log(node);
+    let componentDOM
     function OpenDropdown(event) {
-        console.log(event);
-        console.log('open');
-        const options = new Options({
-            target: node,
-            props: {
-                parent: event.target
-            }
-        });
-    };
+        if (componentDOM) {
+            componentDOM.$destroy();
+            componentDOM = undefined;
+        }else {
+            componentDOM = new Options({
+                target: node,
+                props: {
+                    parent: event.target,
+                    elements: elements
+                }
+            });
+        }
+    }
 
     node.addEventListener("click",OpenDropdown)
 }
