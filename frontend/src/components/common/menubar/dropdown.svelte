@@ -29,7 +29,7 @@
     }
 
     /* Add a red background color to navbar links on hover */
-    .navbar a:hover, .dropdown:hover .dropbtn {
+    .dropdown .dropbtn:hover {
         background-color: #6d6d6d;
     }
 
@@ -41,21 +41,6 @@
         min-width: 60px;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
         z-index: 1;
-    }
-
-    /* Links inside the dropdown */
-    .dropdown-content a {
-        float: none;
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        text-align: left;
-    }
-
-    /* Add a grey background color to dropdown links on hover */
-    .dropdown-content a:hover {
-        background-color: #ddd;
     }
 
     /* Show the dropdown menu on hover */
